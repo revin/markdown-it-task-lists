@@ -7,7 +7,7 @@ A [markdown-it](https://www.npmjs.com/package/markdown-it) plugin to create GitH
 
 ## What it does
 
-- Builds task/todo lists out of markdown lists with items starting with `[ ]` or `[x]`.
+- Builds [task/todo lists](https://github.com/blog/1825-task-lists-in-all-markdown-documents) out of markdown lists with items starting with `[ ]` or `[x]`.
 - Nothing else
 
 ### Why is this useful?
