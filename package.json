@@ -1,0 +1,34 @@
+{
+  "name": "markdown-it-task-lists",
+  "version": "1.0.0",
+  "description": "A markdown-it plugin to create GitHub-style task lists",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --timeout 5000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:revin/markdown-it-task-lists.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "cheerio": "^0.20.0",
+    "markdown-it": "^6.0.0",
+    "mocha": "^2.4.5"
+  },
+  "keywords": [
+    "markdown",
+    "markdown-it",
+    "markdown-it-plugin",
+    "task",
+    "list",
+    "todo",
+    "checkbox"
+  ],
+  "author": "Revin Guillen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/revin/markdown-it-task-lists/issues"
+  },
+  "homepage": "https://github.com/revin/markdown-it-task-lists#readme"
+}
