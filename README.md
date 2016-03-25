@@ -2,6 +2,7 @@
 
 A [markdown-it](https://www.npmjs.com/package/markdown-it) plugin to create GitHub-style [task lists](https://github.com/blog/1825-task-lists-in-all-markdown-documents)
 
+[![Build Status](https://travis-ci.org/revin/markdown-it-task-lists.svg?branch=master)](https://travis-ci.org/revin/markdown-it-task-lists)
 [![Code Climate](https://codeclimate.com/github/revin/markdown-it-task-lists/badges/gpa.svg)](https://codeclimate.com/github/revin/markdown-it-task-lists)
 
 ## What it does
