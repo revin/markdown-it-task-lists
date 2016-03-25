@@ -2,6 +2,8 @@
 
 A [markdown-it](https://www.npmjs.com/package/markdown-it) plugin to create GitHub-style [task lists](https://github.com/blog/1825-task-lists-in-all-markdown-documents)
 
+[![Code Climate](https://codeclimate.com/github/revin/markdown-it-task-lists/badges/gpa.svg)](https://codeclimate.com/github/revin/markdown-it-task-lists)
+
 ## What it does
 
 - Builds task/todo lists out of markdown lists with items starting with `[ ]` or `[x]`.
