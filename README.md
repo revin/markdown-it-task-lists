@@ -33,6 +33,11 @@ var parser = md().use(taskLists);
 
 var result = parser.render(...); // markdown string containing task list items
 ```
+### Browser Usage
+
+If you use one of the versions of this module available in `dist/` directly in
+a browser by including it with a `<script>` element, it will be available
+globally in `window.markdownitTaskLists`.
 
 ## Tests
 
