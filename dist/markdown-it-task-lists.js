@@ -1,4 +1,4 @@
-/*! markdown-it-task-lists 1.1.0 https://github.com/revin/markdown-it-task-lists#readme by @license ISC */
+/*! markdown-it-task-lists 1.2.0 https://github.com/revin/markdown-it-task-lists#readme by @license ISC */
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.markdownitTaskLists = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 // Markdown-it plugin to render GitHub-style task lists; see
 //
@@ -45,7 +45,7 @@ function makeCheckbox(token, TokenConstructor) {
 	var checkbox = new TokenConstructor('html_inline', '', 0);
 	if (token.content.indexOf('[ ]') === 0) {
 		checkbox.content = '<input class="task-list-item-checkbox" disabled="" type="checkbox">';
-	} else if (token.content.indexOf('[x]') === 0) {
+	} else if (token.content.indexOf('[x]') === 0 || token.content.indexOf('[X]') === 0) {
 		checkbox.content = '<input class="task-list-item-checkbox" checked="" disabled="" type="checkbox">';
 	}
 	return checkbox;
@@ -57,7 +57,7 @@ function isListItem(token) { return token.type === 'list_item_open'; }
 
 function startsWithTodoMarkdown(token) {
 	// leading whitespace in a list item is already trimmed off by markdown-it
-	return token.content.indexOf('[ ]') === 0 || token.content.indexOf('[x]') === 0;
+	return token.content.indexOf('[ ]') === 0 || token.content.indexOf('[x]') === 0 || token.content.indexOf('[X]') === 0;
 }
 
 },{}]},{},[1])(1)
