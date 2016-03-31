@@ -42,7 +42,7 @@ describe('markdown-it-task-lists', function() {
     });
 
     it('renders items marked up as [x] as checked', function () {
-        var shouldBeChecked = (fixtures.ordered.match(/[\.\*\+-]\s+\[x\]/g) || []).length;
+        var shouldBeChecked = (fixtures.ordered.match(/[\.\*\+-]\s+\[[Xx]\]/g) || []).length;
         assert.equal(shouldBeChecked, $.ordered('input[type=checkbox].task-list-item-checkbox:checked').length);
     });
 

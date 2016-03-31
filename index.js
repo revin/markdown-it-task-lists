@@ -43,7 +43,7 @@ function makeCheckbox(token, TokenConstructor) {
 	var checkbox = new TokenConstructor('html_inline', '', 0);
 	if (token.content.indexOf('[ ]') === 0) {
 		checkbox.content = '<input class="task-list-item-checkbox" disabled="" type="checkbox">';
-	} else if (token.content.indexOf('[x]') === 0) {
+	} else if (token.content.indexOf('[x]') === 0 || token.content.indexOf('[X]') === 0) {
 		checkbox.content = '<input class="task-list-item-checkbox" checked="" disabled="" type="checkbox">';
 	}
 	return checkbox;
@@ -55,5 +55,5 @@ function isListItem(token) { return token.type === 'list_item_open'; }
 
 function startsWithTodoMarkdown(token) {
 	// leading whitespace in a list item is already trimmed off by markdown-it
-	return token.content.indexOf('[ ]') === 0 || token.content.indexOf('[x]') === 0;
+	return token.content.indexOf('[ ]') === 0 || token.content.indexOf('[x]') === 0 || token.content.indexOf('[X]') === 0;
 }

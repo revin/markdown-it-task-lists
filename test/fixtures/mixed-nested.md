@@ -14,3 +14,4 @@
   - [ ] nested unchecked item 1
   - [ ] nested unchecked item 2
   - [x] nested checked item 3
+  - [X] nested checked item 4
