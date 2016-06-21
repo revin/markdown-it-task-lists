@@ -1,6 +1,6 @@
 {
   "name": "markdown-it-task-lists",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A markdown-it plugin to create GitHub-style task lists",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,7 @@
   "devDependencies": {
     "browserify": "*",
     "cheerio": "^0.20.0",
-    "markdown-it": "^6.0.0",
+    "markdown-it": "^6.1.0",
     "mocha": "*",
     "uglify": "*"
   },
