@@ -9,12 +9,23 @@ module.exports = function(md, options) {
 		for (var i = 2; i < tokens.length; i++) {
 			if (isTodoItem(tokens, i)) {
 				todoify(tokens[i], state.Token);
-				tokens[i-2].attrSet('class', 'task-list-item');
-				tokens[parentToken(tokens, i-2)].attrSet('class', 'task-list');
+				attrSet(tokens[i-2], 'class', 'task-list-item');
+				attrSet(tokens[parentToken(tokens, i-2)], 'class', 'task-list');
 			}
 		}
 	});
 };
+
+function attrSet(token, name, value) {
+	var index = token.attrIndex(name);
+	var attr = [name, value];
+
+	if (index < 0) {
+		token.attrPush(attr);
+	} else {
+		token.attrs[index] = attr;
+	}
+}
 
 function parentToken(tokens, index) {
 	var targetLevel = tokens[index].level - 1;
