@@ -1,3 +1,11 @@
+# 1.2.2 (2016-06-21)
+
+* Update the changelog for 1.2.1 and 1.2.2 :)
+
+# 1.2.1 (2016-06-21)
+
+* Support markdown-it back to 4.0 rather than 5.1
+
 # 1.2.0 (2016-03-31)
 
 * Added support for uppercase [X], not just [x]
