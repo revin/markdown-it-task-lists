@@ -19,7 +19,7 @@
   "dependencies": {},
   "devDependencies": {
     "browserify": "*",
-    "cheerio": "^0.20.0",
+    "cheerio": "^0.21.0",
     "markdown-it": "^7.0.0",
     "mocha": "*",
     "uglify": "*"
