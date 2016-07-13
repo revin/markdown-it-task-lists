@@ -3,7 +3,13 @@
 // https://github.com/blog/1375-task-lists-in-gfm-issues-pulls-comments
 // https://github.com/blog/1825-task-lists-in-all-markdown-documents
 
+var disableCheckboxes = true;
+
 module.exports = function(md, options) {
+	if (options && options.enabled) {
+		disableCheckboxes = false;
+	}
+
 	md.core.ruler.after('inline', 'github-task-lists', function(state) {
 		var tokens = state.tokens;
 		for (var i = 2; i < tokens.length; i++) {
@@ -52,10 +58,11 @@ function todoify(token, TokenConstructor) {
 
 function makeCheckbox(token, TokenConstructor) {
 	var checkbox = new TokenConstructor('html_inline', '', 0);
+	var disabledAttr = disableCheckboxes ? ' disabled="" ' : '';
 	if (token.content.indexOf('[ ]') === 0) {
-		checkbox.content = '<input class="task-list-item-checkbox" disabled="" type="checkbox">';
+		checkbox.content = '<input class="task-list-item-checkbox"' + disabledAttr + 'type="checkbox">';
 	} else if (token.content.indexOf('[x]') === 0 || token.content.indexOf('[X]') === 0) {
-		checkbox.content = '<input class="task-list-item-checkbox" checked="" disabled="" type="checkbox">';
+		checkbox.content = '<input class="task-list-item-checkbox" checked=""' + disabledAttr + 'type="checkbox">';
 	}
 	return checkbox;
 }

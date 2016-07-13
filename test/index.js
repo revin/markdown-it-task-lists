@@ -46,8 +46,14 @@ describe('markdown-it-task-lists', function() {
         assert.equal(shouldBeChecked, $.ordered('input[type=checkbox].task-list-item-checkbox:checked').length);
     });
 
-    it('always disables the rendered checkboxes', function () {
+    it('disables the rendered checkboxes', function () {
         assert(!$.bullet('input[type=checkbox].task-list-item-checkbox:not([disabled])').length);
+    });
+
+    it('enables the rendered checkboxes when options.enabled is truthy', function () {
+        var enabledParser = md().use(taskLists, {enabled: true});
+        var $$ = cheerio.load(enabledParser.render(fixtures.ordered));
+        assert($$('input[type=checkbox].task-list-item-checkbox:not([disabled])').length > 0);
     });
 
     it('does NOT render [  ], [ x], [x ], or [ x ] as checkboxes', function () {
