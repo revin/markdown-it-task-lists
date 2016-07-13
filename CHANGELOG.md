@@ -1,3 +1,9 @@
+# 1.3.0 (2016-07-13)
+
+* Added support for `{enabled: true}` option, to leave the rendered
+  checkboxes enabled
+* Updated markdown-it devDependency to ^7.0.0
+
 # 1.2.2 (2016-06-21)
 
 * Update the changelog for 1.2.1 and 1.2.2 :)
