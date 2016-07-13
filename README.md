@@ -33,6 +33,14 @@ var parser = md().use(taskLists);
 
 var result = parser.render(...); // markdown string containing task list items
 ```
+
+The rendered checkboxes are disabled; to change this, pass a truthy value into
+the `enabled` property of the plugin options:
+
+```js
+var parser = md().use(taskLists, {enabled: true});
+```
+
 ### Browser Usage
 
 If you use one of the versions of this module available in `dist/` directly in
