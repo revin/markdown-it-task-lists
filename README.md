@@ -41,6 +41,15 @@ the `enabled` property of the plugin options:
 var parser = md().use(taskLists, {enabled: true});
 ```
 
+If you'd like to wrap the rendered list items in a `<label>` element for UX
+purposes, pass a truthy value to the `label` property of the plugin options:
+
+```js
+var parser = md().use(taskLists, {label: true});
+```
+
+The options can be combined, of course.
+
 ### Browser Usage
 
 If you use one of the versions of this module available in `dist/` directly in

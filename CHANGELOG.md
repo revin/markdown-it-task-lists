@@ -1,3 +1,8 @@
+# 1.4.0 (2016-07-19)
+
+* Added support for `{label: true}` option, to wrap the rendered
+  `<input>` elements with a `<label>` element
+
 # 1.3.0 (2016-07-13)
 
 * Added support for `{enabled: true}` option, to leave the rendered

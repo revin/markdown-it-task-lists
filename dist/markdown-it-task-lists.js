@@ -1,4 +1,4 @@
-/*! markdown-it-task-lists 1.3.0 https://github.com/revin/markdown-it-task-lists#readme by @license ISC */
+/*! markdown-it-task-lists 1.4.0 https://github.com/revin/markdown-it-task-lists#readme by @license ISC */
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.markdownitTaskLists = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 // Markdown-it plugin to render GitHub-style task lists; see
 //
@@ -6,10 +6,12 @@
 // https://github.com/blog/1825-task-lists-in-all-markdown-documents
 
 var disableCheckboxes = true;
+var useLabelWrapper = false;
 
 module.exports = function(md, options) {
-	if (options && options.enabled) {
-		disableCheckboxes = false;
+	if (options) {
+		disableCheckboxes = !options.enabled;
+		useLabelWrapper = !!options.label;
 	}
 
 	md.core.ruler.after('inline', 'github-task-lists', function(state) {
@@ -56,6 +58,11 @@ function todoify(token, TokenConstructor) {
 	token.children.unshift(makeCheckbox(token, TokenConstructor));
 	token.children[1].content = token.children[1].content.slice(3);
 	token.content = token.content.slice(3);
+
+	if (useLabelWrapper) {
+		token.children.unshift(beginLabel(TokenConstructor));
+		token.children.push(endLabel(TokenConstructor));
+	}
 }
 
 function makeCheckbox(token, TokenConstructor) {
@@ -67,6 +74,20 @@ function makeCheckbox(token, TokenConstructor) {
 		checkbox.content = '<input class="task-list-item-checkbox" checked=""' + disabledAttr + 'type="checkbox">';
 	}
 	return checkbox;
+}
+
+// these next two functions are kind of hacky; probably should really be a
+// true block-level token with .tag=='label'
+function beginLabel(TokenConstructor) {
+	var token = new TokenConstructor('html_inline', '', 0);
+	token.content = '<label>';
+	return token;
+}
+
+function endLabel(TokenConstructor) {
+	var token = new TokenConstructor('html_inline', '', 0);
+	token.content = '</label>';
+	return token;
 }
 
 function isInline(token) { return token.type === 'inline'; }
