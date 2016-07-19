@@ -4,10 +4,12 @@
 // https://github.com/blog/1825-task-lists-in-all-markdown-documents
 
 var disableCheckboxes = true;
+var useLabelWrapper = false;
 
 module.exports = function(md, options) {
-	if (options && options.enabled) {
-		disableCheckboxes = false;
+	if (options) {
+		disableCheckboxes = !options.enabled;
+		useLabelWrapper = !!options.label;
 	}
 
 	md.core.ruler.after('inline', 'github-task-lists', function(state) {
@@ -54,6 +56,11 @@ function todoify(token, TokenConstructor) {
 	token.children.unshift(makeCheckbox(token, TokenConstructor));
 	token.children[1].content = token.children[1].content.slice(3);
 	token.content = token.content.slice(3);
+
+	if (useLabelWrapper) {
+		token.children.unshift(beginLabel(TokenConstructor));
+		token.children.push(endLabel(TokenConstructor));
+	}
 }
 
 function makeCheckbox(token, TokenConstructor) {
@@ -65,6 +72,20 @@ function makeCheckbox(token, TokenConstructor) {
 		checkbox.content = '<input class="task-list-item-checkbox" checked=""' + disabledAttr + 'type="checkbox">';
 	}
 	return checkbox;
+}
+
+// these next two functions are kind of hacky; probably should really be a
+// true block-level token with .tag=='label'
+function beginLabel(TokenConstructor) {
+	var token = new TokenConstructor('html_inline', '', 0);
+	token.content = '<label>';
+	return token;
+}
+
+function endLabel(TokenConstructor) {
+	var token = new TokenConstructor('html_inline', '', 0);
+	token.content = '</label>';
+	return token;
 }
 
 function isInline(token) { return token.type === 'inline'; }

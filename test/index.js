@@ -56,6 +56,31 @@ describe('markdown-it-task-lists', function() {
         assert($$('input[type=checkbox].task-list-item-checkbox:not([disabled])').length > 0);
     });
 
+    it('skips rendering wrapping <label> elements', function () {
+        assert.equal(0, $.bullet('label').length);
+        assert.equal(0, $.ordered('label').length);
+        assert.equal(0, $.mixedNested('label').length);
+        assert.equal(0, $.dirty('label').length);
+    });
+
+    it('does not render wrapping <label> elements when options.label is falsy', function () {
+        var unlabeledParser = md().use(taskLists, {label: false});
+        var $$ = cheerio.load(unlabeledParser.render(fixtures.ordered));
+        assert.equal(0, $$('label').length);
+    });
+
+    it("wraps the rendered list items' contents in a <label> element when options.label is truthy", function () {
+        var labeledParser = md().use(taskLists, {label: true});
+        var $$ = cheerio.load(labeledParser.render(fixtures.ordered));
+        assert($$('.task-list-item > label > input[type=checkbox].task-list-item-checkbox').length > 0);
+    });
+
+    it('wraps and enables items when options.enabled and options.label are truthy', function () {
+        var enabledLabeledParser = md().use(taskLists, {enabled: true, label: true});
+        var $$ = cheerio.load(enabledLabeledParser.render(fixtures.ordered));
+        assert($$('.task-list-item > label > input[type=checkbox].task-list-item-checkbox:not([disabled])').length > 0);
+    });
+
     it('does NOT render [  ], [ x], [x ], or [ x ] as checkboxes', function () {
         var html = $.dirty.html();
         assert(~html.indexOf('[  ]'));
