@@ -81,12 +81,13 @@ describe('markdown-it-task-lists', function() {
         assert($$('.task-list-item > label > input[type=checkbox].task-list-item-checkbox:not([disabled])').length > 0);
     });
 
-    it('does NOT render [  ], [ x], [x ], or [ x ] as checkboxes', function () {
+    it.only('does NOT render [  ], "[ ]" (no space after closing bracket), [ x], [x ], or [ x ] as checkboxes', function () {
         var html = $.dirty.html();
-        assert(~html.indexOf('[  ]'));
-        assert(~html.indexOf('[x ]'));
-        assert(~html.indexOf('[ x]'));
-        assert(~html.indexOf('[ x ]'));
+        assert(~html.indexOf('<li>[  ]'));
+        assert(~html.indexOf('<li>[ ]</li>'));
+        assert(~html.indexOf('<li>[x ]'));
+        assert(~html.indexOf('<li>[ x]'));
+        assert(~html.indexOf('<li>[ x ]'));
     });
 
     it('adds class .task-list-item to parent <li>', function () {

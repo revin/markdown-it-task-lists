@@ -1,3 +1,8 @@
+# 1.4.1 (2016-07-25)
+
+* Require a space after the `[ ]` markdown, since GitHub [doesn't render a
+  checkbox without it](https://github.com/revin/markdown-it-task-lists/issues/12)
+
 # 1.4.0 (2016-07-19)
 
 * Added support for `{label: true}` option, to wrap the rendered
