@@ -17,8 +17,8 @@ module.exports = function(md, options) {
 		for (var i = 2; i < tokens.length; i++) {
 			if (isTodoItem(tokens, i)) {
 				todoify(tokens[i], state.Token);
-				attrSet(tokens[i-2], 'class', 'task-list-item');
-				attrSet(tokens[parentToken(tokens, i-2)], 'class', 'task-list');
+				attrSet(tokens[i-2], 'class', 'task-list-item' + (!disableCheckboxes ? ' enabled' : ''));
+				attrSet(tokens[parentToken(tokens, i-2)], 'class', 'contains-task-list');
 			}
 		}
 	});

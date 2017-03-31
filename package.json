@@ -19,8 +19,8 @@
   "dependencies": {},
   "devDependencies": {
     "browserify": "*",
-    "cheerio": "^0.22.0",
-    "markdown-it": "^8.0.1",
+    "cheerio": ">=0.20.0",
+    "markdown-it": ">=7.0.0",
     "mocha": "*",
     "uglify": "*"
   },
