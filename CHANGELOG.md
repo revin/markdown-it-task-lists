@@ -1,3 +1,13 @@
+# 2.0.0 (2017-03-31)
+
+* Change the list element's class from `task-list` to `contains-task-list` to
+  match GitHub's generated markup
+* Add the class `enabled` to the `<li>` elements when the checkboxes aren't
+  being rendered as disabled, to match GitHub's generated markup
+* Updated devDependencies:
+  * cheerio: >=0.20.0
+  * markdown-it: >=7.0.0
+
 # 1.4.1 (2016-07-25)
 
 * Require a space after the `[ ]` markdown, since GitHub [doesn't render a

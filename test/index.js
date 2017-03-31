@@ -56,6 +56,12 @@ describe('markdown-it-task-lists', function() {
         assert($$('input[type=checkbox].task-list-item-checkbox:not([disabled])').length > 0);
     });
 
+    it('adds class `enabled` to <li> elements when options.enabled is truthy', function () {
+        var enabledParser = md().use(taskLists, {enabled: true});
+        var $$ = cheerio.load(enabledParser.render(fixtures.ordered));
+        assert.equal($$('.task-list-item:not(.enabled)').length, 0);
+    });
+
     it('skips rendering wrapping <label> elements', function () {
         assert.equal(0, $.bullet('label').length);
         assert.equal(0, $.ordered('label').length);
@@ -81,7 +87,7 @@ describe('markdown-it-task-lists', function() {
         assert($$('.task-list-item > label > input[type=checkbox].task-list-item-checkbox:not([disabled])').length > 0);
     });
 
-    it.only('does NOT render [  ], "[ ]" (no space after closing bracket), [ x], [x ], or [ x ] as checkboxes', function () {
+    it('does NOT render [  ], "[ ]" (no space after closing bracket), [ x], [x ], or [ x ] as checkboxes', function () {
         var html = $.dirty.html();
         assert(~html.indexOf('<li>[  ]'));
         assert(~html.indexOf('<li>[ ]</li>'));
@@ -94,11 +100,11 @@ describe('markdown-it-task-lists', function() {
         assert(~$.bullet('li.task-list-item').length);
     });
 
-    it('adds class .task-list to lists', function () {
-        assert(~$.bullet('ol.task-list, ul.task-list').length);
+    it('adds class .contains-task-list to lists', function () {
+        assert(~$.bullet('ol.contains-task-list, ul.contains-task-list').length);
     });
 
-    it('only adds .task-list to most immediate parent list', function () {
-        assert($.mixedNested('ol:not(.task-list) ul.task-list').length);
+    it('only adds .contains-task-list to most immediate parent list', function () {
+        assert($.mixedNested('ol:not(.contains-task-list) ul.contains-task-list').length);
     });
 });
