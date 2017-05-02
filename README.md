@@ -1,5 +1,7 @@
 # markdown-it-task-lists
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/revin/markdown-it-task-lists.svg)](https://greenkeeper.io/)
+
 A [markdown-it](https://www.npmjs.com/package/markdown-it) plugin to create GitHub-style [task lists](https://github.com/blog/1825-task-lists-in-all-markdown-documents)
 
 [![Build Status](https://travis-ci.org/revin/markdown-it-task-lists.svg?branch=master)](https://travis-ci.org/revin/markdown-it-task-lists)
