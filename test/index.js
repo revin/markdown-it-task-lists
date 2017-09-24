@@ -87,6 +87,12 @@ describe('markdown-it-task-lists', function() {
         assert($$('.task-list-item > label > input[type=checkbox].task-list-item-checkbox:not([disabled])').length > 0);
     });
 
+    it('adds label after items when options.label and options.labelAfter are truthy', function() {
+      var enabledLabeledParser = md().use(taskLists, {enabled: true, label: true, labelAfter: true});
+      var $$ = cheerio.load(enabledLabeledParser.render(fixtures.ordered));
+      assert( $$('.task-list-item > input[type=checkbox].task-list-item-checkbox:not([disabled])').next().is('label'));
+    });
+
     it('does NOT render [  ], "[ ]" (no space after closing bracket), [ x], [x ], or [ x ] as checkboxes', function () {
         var html = $.dirty.html();
         assert(~html.indexOf('<li>[  ]'));
