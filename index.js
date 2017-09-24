@@ -62,7 +62,11 @@ function todoify(token, TokenConstructor) {
 	if (useLabelWrapper) {
 		if (useLabelAfter) {
 			token.children.pop();
-			token.children.push(afterLabel(token.content, TokenConstructor));
+
+			// Use timestamp as id property of the checkbox.
+			var id = new Date().getTime();
+			token.children[0].content = token.children[0].content.slice(0, -1) + ' id="' + id + '">';
+			token.children.push(afterLabel(token.content, id, TokenConstructor));
 		} else {
 			token.children.unshift(beginLabel(TokenConstructor));
 			token.children.push(endLabel(TokenConstructor));
@@ -95,9 +99,10 @@ function endLabel(TokenConstructor) {
 	return token;
 }
 
-function afterLabel(content, TokenConstructor) {
+function afterLabel(content, id, TokenConstructor) {
 	var token = new TokenConstructor('html_inline', '', 0);
-	token.content = '<label>' + content + '</label>';
+	token.content = '<label for="' + id + '">' + content + '</label>';
+	token.attrs = [{for: id}];
 	return token;
 }
 
