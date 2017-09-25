@@ -63,8 +63,8 @@ function todoify(token, TokenConstructor) {
 		if (useLabelAfter) {
 			token.children.pop();
 
-			// Use timestamp as id property of the checkbox.
-			var id = new Date().getTime();
+			// Use large random number as id property of the checkbox.
+			var id = Math.ceil(Math.random() * (10000 * 1000) - 1000);
 			token.children[0].content = token.children[0].content.slice(0, -1) + ' id="' + id + '">';
 			token.children.push(afterLabel(token.content, id, TokenConstructor));
 		} else {
@@ -101,7 +101,7 @@ function endLabel(TokenConstructor) {
 
 function afterLabel(content, id, TokenConstructor) {
 	var token = new TokenConstructor('html_inline', '', 0);
-	token.content = '<label for="' + id + '">' + content + '</label>';
+	token.content = '<label class="task-list-item-label" for="' + id + '">' + content + '</label>';
 	token.attrs = [{for: id}];
 	return token;
 }
