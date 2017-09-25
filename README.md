@@ -49,6 +49,14 @@ purposes, pass a truthy value to the `label` property of the plugin options:
 var parser = md().use(taskLists, {label: true});
 ```
 
+To add the label after the checkbox pass a truthy value to `labelAfter` property:
+
+```js
+var parser = md().use(taskLists, {label: true, labelAfter: true});
+```
+
+**Note:** This option does require the `label` option to be truthy.
+
 The options can be combined, of course.
 
 ### Browser Usage
