@@ -64,7 +64,7 @@ function todoify(token, TokenConstructor) {
 			token.children.pop();
 
 			// Use large random number as id property of the checkbox.
-			var id = Math.ceil(Math.random() * (10000 * 1000) - 1000);
+			var id = 'task-item-' + Math.ceil(Math.random() * (10000 * 1000) - 1000);
 			token.children[0].content = token.children[0].content.slice(0, -1) + ' id="' + id + '">';
 			token.children.push(afterLabel(token.content, id, TokenConstructor));
 		} else {
