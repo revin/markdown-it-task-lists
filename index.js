@@ -5,11 +5,13 @@
 
 var disableCheckboxes = true;
 var useLabelWrapper = false;
+var useLabelAfter = false;
 
 module.exports = function(md, options) {
 	if (options) {
 		disableCheckboxes = !options.enabled;
 		useLabelWrapper = !!options.label;
+		useLabelAfter = !!options.labelAfter;
 	}
 
 	md.core.ruler.after('inline', 'github-task-lists', function(state) {
@@ -58,8 +60,17 @@ function todoify(token, TokenConstructor) {
 	token.content = token.content.slice(3);
 
 	if (useLabelWrapper) {
-		token.children.unshift(beginLabel(TokenConstructor));
-		token.children.push(endLabel(TokenConstructor));
+		if (useLabelAfter) {
+			token.children.pop();
+
+			// Use large random number as id property of the checkbox.
+			var id = 'task-item-' + Math.ceil(Math.random() * (10000 * 1000) - 1000);
+			token.children[0].content = token.children[0].content.slice(0, -1) + ' id="' + id + '">';
+			token.children.push(afterLabel(token.content, id, TokenConstructor));
+		} else {
+			token.children.unshift(beginLabel(TokenConstructor));
+			token.children.push(endLabel(TokenConstructor));
+		}
 	}
 }
 
@@ -85,6 +96,13 @@ function beginLabel(TokenConstructor) {
 function endLabel(TokenConstructor) {
 	var token = new TokenConstructor('html_inline', '', 0);
 	token.content = '</label>';
+	return token;
+}
+
+function afterLabel(content, id, TokenConstructor) {
+	var token = new TokenConstructor('html_inline', '', 0);
+	token.content = '<label class="task-list-item-label" for="' + id + '">' + content + '</label>';
+	token.attrs = [{for: id}];
 	return token;
 }
 
