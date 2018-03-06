@@ -18,10 +18,10 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "browserify": "*",
+    "browserify": "^16.1.1",
     "cheerio": ">=0.20.0",
     "markdown-it": ">=7.0.0",
-    "mocha": "*",
+    "mocha": "^5.0.2",
     "uglify": "*"
   },
   "keywords": [
