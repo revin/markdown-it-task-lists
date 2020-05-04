@@ -1,6 +1,6 @@
 # Boton  Registra nuevo pedido con clave  
 ### Prerequisitos
- Antes de comenzxar se necesitaran als tablas temporales:
+ Antes de comenzxar se necesitaran las tablas temporales:
 ```sql
 CREATE TEMP TABLE tmp_pedidos
 (
@@ -101,7 +101,7 @@ CREATE TEMP TABLE tmp_pedidos2
              "0",
              0)
 ```  
-- si falla la creacion de estre registro vuelva a intentar el proceso nuevamente ```btnuevoclick(nil);```
+- si falla la creacion de este registro vuelva a intentar el proceso nuevamente ```btnuevoclick(nil);```
 - Terminado este proceso estará listo para la captura en un registro nuevo.
 
 
