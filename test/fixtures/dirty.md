@@ -1,7 +1,3 @@
--   [ ] unchecked todo item 1
-- [ ]
-- [  ] not a todo item 2
-- [ x] not a todo item 3
-- [x ] not a todo item 4
-- [ x ] not a todo item 5
--   [x] todo item 6
+# Boton  Registra nuevo pedido con clave  
+- Checa que tenga registro en spnumped
+    - procedimiento `adq_spnumped`
