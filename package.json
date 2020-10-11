@@ -1,16 +1,16 @@
 {
   "name": "markdown-it-task-lists",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "A markdown-it plugin to create GitHub-style task lists",
   "main": "index.js",
   "scripts": {
     "test": "mocha --timeout 5000",
-    "clean": "rm -Rf dist && mkdir dist",
+    "clean": "rimraf dist && md dist",
     "build": "npm run clean && npm run build-dist",
     "build-dist": "npm run build-dist-copyright && npm run build-dist-file && npm run build-dist-min",
-    "build-dist-copyright": "echo /*! ${npm_package_name} ${npm_package_version} ${npm_package_homepage} by ${npm_package_author} @license ${npm_package_license} \\*/ > dist/${npm_package_name}.js",
-    "build-dist-file": "browserify ${npm_package_main} -s markdownitTaskLists >> dist/${npm_package_name}.js",
-    "build-dist-min": "uglifyjs dist/${npm_package_name}.js -b beautify=false,ascii-only=true -c -m --preamble \"/*! ${npm_package_name} ${npm_package_version} ${npm_package_homepage} by ${npm_package_author} @license {$npm_package_license} */\" > dist/${npm_package_name}.min.js"
+    "build-dist-copyright": "echo /*! markdown-it-task-lists 2.1.2 https://github.com/revin/markdown-it-task-lists#readme by Revin Guillen @license ISC \\*/ > dist/markdown-it-task-lists.js",
+    "build-dist-file": "browserify index.js -s markdownitTaskLists >> dist/markdown-it-task-lists.js",
+    "build-dist-min": "uglifyjs dist/markdown-it-task-lists.js -b beautify=false,ascii-only=true -c -m --preamble \"/*! markdown-it-task-lists 2.1.2 https://github.com/revin/markdown-it-task-lists#readme by Revin Guillen @license {$npm_package_license} */\" > dist/markdown-it-task-lists.min.js"
   },
   "repository": {
     "type": "git",
