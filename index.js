@@ -76,7 +76,7 @@ function todoify(token, TokenConstructor) {
 
 function makeCheckbox(token, TokenConstructor) {
 	var checkbox = new TokenConstructor('html_inline', '', 0);
-	var disabledAttr = disableCheckboxes ? ' disabled="" ' : '';
+	var disabledAttr = disableCheckboxes ? ' disabled="" ' : ' ';
 	if (token.content.indexOf('[ ] ') === 0) {
 		checkbox.content = '<input class="task-list-item-checkbox"' + disabledAttr + 'type="checkbox">';
 	} else if (token.content.indexOf('[x] ') === 0 || token.content.indexOf('[X] ') === 0) {
